@@ -36,5 +36,17 @@ def cotacao():
         valor=valor, preco=preco, total=total
         )
 
+# http://localhost:5000/conversao
+@app.route("/conversao")
+def conversao():
+    # 4. recebe o valor em dolar preco
+    # preco = formulario.pegar_valor("nome da input")
+    # 5. calcula o valor
+
+    # retorna o valor (Resposta)
+    return render_template("index.html")
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
