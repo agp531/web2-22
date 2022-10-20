@@ -16,10 +16,16 @@
 <body>
     <main>
     
-    <form action="/conversao">
-        <input name="preco" placeholder="Digite o preço em dólar">
+    <form action="/conversao" method="POST">
+        <input 
+            name="preco" 
+            placeholder="Digite o preço em dólar"
+            type="text">
         <input value="calcular" type="submit">
     </form>
+    <div>
+        {{ valor_reais }}
+    </div>
 
     </main>
 </body>

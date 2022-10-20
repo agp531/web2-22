@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+# IMPORTS 
+from flask import Flask, render_template, request
 from datetime import datetime
 
 # Flask é um framework web 
@@ -37,16 +38,23 @@ def cotacao():
         )
 
 # http://localhost:5000/conversao
-@app.route("/conversao")
+@app.route("/conversao", methods=["POST","GET"])
 def conversao():
-    # 4. recebe o valor em dolar preco
-    # preco = formulario.pegar_valor("nome da input")
-    # 5. calcula o valor
-
-    # retorna o valor (Resposta)
-    return render_template("index.html")
-
-
+    #(GET) eh o caso quando usuario digita a url no browser
+    if request.method == 'GET':
+        return render_template("conversao.html")
+    else:
+        #(POST) eh quando envia o formulario (clica calcular)
+        # 4. recebe o valor em dolar preco
+        preco = float(request.form.get("preco"))
+        # 5. calcula o valor
+        # TODO: pegar o preco da cotacao em:
+        # https://docs.awesomeapi.com.br/api-de-moedas
+        valor_reais = preco * 5.24
+        # retorna o valor (Resposta)
+        return render_template(
+            "conversao.html", valor_reais = valor_reais
+            )
 
 if __name__ == "__main__":
     app.run(debug=True)
