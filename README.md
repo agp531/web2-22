@@ -1,7 +1,9 @@
 # Desenvolvimento Web II
 2022-2
 
-## [Códigos](codigos/)
+## [Códigos vistos em aula](codigos/)
+
+## [Instalação flask/python](https://github.com/fscheidt/dev)
 
 ## Instalação do python
 No Lab de informática **não** é necessário.
