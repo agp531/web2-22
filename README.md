@@ -3,7 +3,7 @@
 
 ## [Códigos vistos em aula](codigos/)
 
-## [Instalação flask/python](https://github.com/fscheidt/dev)
+## [Instalação flask](https://github.com/fscheidt/dev/blob/master/flask/setup-projeto-flask.md)
 
 ## Instalação do python
 No Lab de informática **não** é necessário.
