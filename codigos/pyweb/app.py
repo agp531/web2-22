@@ -17,9 +17,8 @@ app = Flask(__name__)
 
 # http://localhost:5000/
 @app.route("/") # caminho da pagina principal
-def hello():
-    agora = datetime.now()
-    return f"<h1>Seja bem vindo - {agora}</h1>"
+def index():
+    return render_template('index.html')
 
 # http://localhost:5000/bomdia
 @app.route("/bomdia")  # representa caminho /bomdia
