@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.00, shrink-to-fit=no">
+<!--
+    <link rel="stylesheet" href="{{url_for('static', filename='bts/bootstrap.min.css')}}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="{{url_for('static', filename='min.js')}}"></script>
+-->
+ 
+</head>
+<body>
+<!-- NavBar begin -->
+<header class="site-header" id="nav-header">
+<nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+  <div class="container">
+    <a class="navbar-brand mr-4" href="{{url_for('home')}}" title="Tools">
+        <i class="fas fa-cog"></i>
+      HOME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarToggle">
+      <div class="navbar-nav mr-auto">
+        <a class="nav-item nav-link" href="{{url_for('dbstats')}}" data-toggle="tooltip" title="mongo db stats">DB</a>
+      </div>
+      <!-- Navbar Right Side -->
+      <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{{url_for('about')}}">About</a>
+          <a style="color:white" href="{{url_for('repojs')}}">JS</a>
+      </div>
+    </div>
+  </div>
+</nav>
+</header>
+<!-- NavBar end -->
+<!-- Main content end 
+    <script src="{{url_for('static', filename='blockscreen.js')}}"></script>
+
+-->
+<script>
+</script>
+</body>
+</html>

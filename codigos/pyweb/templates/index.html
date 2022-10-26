@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>PyWeb</title>
-</head>
-<body>
-    <h2><i>Bom dia do html</i></h2>
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div id="jumbo" class="jumbotron">
+
+        <span class="page-name">index.html</span>
+
+        <a class="btn btn-outline-dark" id="btn-new-repo" href="#" title="add new repository">
+            <i class='fa fa-plus-circle'></i>
+            menu1
+        </a>
+        <a title="" class="btn btn-primary" href="" style="margin: 5px 1px 1px 15px;">
+            <i class='fas fa-download'></i>
+            CSV
+        </a>  
+
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 # IMPORTS 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 from datetime import datetime
 
 # Flask é um framework web 
@@ -47,6 +47,7 @@ def conversao():
         #(POST) eh quando envia o formulario (clica calcular)
         # 4. recebe o valor em dolar preco
         preco = float(request.form.get("preco"))
+        
         # 5. calcula o valor
         # TODO: pegar o preco da cotacao em:
         # https://docs.awesomeapi.com.br/api-de-moedas
