@@ -1,32 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotação</title>
-    <style>
-        main{
-            display: grid;
-            grid-template-columns: max-content max-content;
-            gap: 20px;
-        }
-    </style>
-</head>
-<body>
-    <main>
-    
-    <form action="/conversao" method="POST">
-        <input 
-            name="preco" 
-            placeholder="Digite o preço em dólar"
-            type="text">
-        <input value="calcular" type="submit">
-    </form>
-    <div>
-        {{ valor_reais }}
+{% extends "layout.html" %}
+{% block content %}
+<form action="/conversao" method="POST">
+    <div class="mb-3">
+        <label for="ex1" class="form-label">Preço</label>
+        <input name="preco" type="text" class="form-control" 
+        id="ex1" autocomplete="off">
     </div>
-
-    </main>
-</body>
-</html>
+    <input value="calcular" type="submit" class="btn btn-danger">
+</form>
+<div>
+    {{ valor_reais }}
+</div>
+{% endblock %}
