@@ -2,13 +2,8 @@
 from flask import Flask, render_template, request, Response
 from datetime import datetime
 
-# Flask é um framework web 
-# ele executa na url 
-# 127.0.0.1:5000 => localhost:5000
-
-# www.google.com
-# www.google.com:80
-# www.google.com:8080
+# IMPORTAR a classe Cliente do arquivo entidades.py
+from entidades import Cliente
 
 # criado o servidor web (flask)
 app = Flask(__name__)
@@ -35,6 +30,21 @@ def cotacao():
         "cotacao.html", 
         valor=valor, preco=preco, total=total
         )
+
+@app.route("/cliente", methods=["POST","GET"])
+def cliente():
+    # recebe cada input do formulário aqui
+    # cria um cliente usando 
+    # cliente = Cliente()
+    id = int(request.form.get("id"))
+    nome = request.form.get("nome")
+
+    cliente = Cliente(id, nome)
+    # cliente.cep = cep
+
+
+
+    pass
 
 # http://localhost:5000/conversao
 @app.route("/conversao", methods=["POST","GET"])
