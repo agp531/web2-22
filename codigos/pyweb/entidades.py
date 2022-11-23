@@ -1,9 +1,37 @@
 from datetime import datetime
 
+"""
+CRUD 
+   C - create (capacidade de adicionar)
+   R - read   (capacidade de obter uma info)
+   U - update (capacidade de atualizar)
+   D - delete (capacidade de remover/apagar)
+
+1. Precisa representar a entidade no código
+   - usa orientação a objetos (classes),
+   que permitem a definição dos atributos.
+2. Interface que exibir informação 
+   (html, formulario, tabelas, ...)
+3. Criar o mapeamento das classes com as tabelas
+   do banco de dados.
+   - SQLite: não precisamos instalar
+   - é um arquivo que podemos deixar dentro 
+   do projeto.
+   - MariaDB (mysql), e SQLite usam uma 
+   linguagem chamada SQL
+   - SQL permite escrever as Queries
+    - INSERT => C (create)
+    - SELECT => R (read)
+    - UPDATE => U (update)
+    - DELETE => D (delete)
+"""
 
 class Produto:
-    # TODO: precisa implementar futuramente
-    pass
+    def __init__(self, id, nome, preco, marca=None):
+        self.id = id        # 635042
+        self.nome = nome    # "Processador AMD Ryzen R5 3600 / Soquete AM4"
+        self.preco = preco  # 121.00
+        self.marca = marca  # "AMD"
 
 class Cliente:
     def __init__(self, id, nome, cpf=None, cep=None):
@@ -32,7 +60,7 @@ if __name__ == '__main__':
 
     lucia = Cliente(3, 'Lucia', cpf='29292929-11')
     lucia.bom_dia()
-
+    """
     fabio = Cliente(
         4, 
         "Fabio", 
@@ -41,3 +69,15 @@ if __name__ == '__main__':
         data_nasc = datetime.now(),
         cep='4444'
     )
+    """
+    ryzen = Produto(
+        635042, 
+        "Processador AMD Ryzen R5 3600",
+        121.00,
+        "AMD"
+    )
+    # print(ryzen.nome, ryzen.preco)
+    from dao import ProdutoDao
+    dp = ProdutoDao()
+    dp.save(ryzen)
+    
