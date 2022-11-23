@@ -22,6 +22,30 @@ class ProdutoDao:
         pass
 
 class ClienteDao:
+
+    def save(self, cliente):
+        """
+        Realiza o INSERT na tabela cliente
+        """
+        # obtem uma conexao com o banco:
+        conn = Database.get_connection()
+        conn.execute(
+            f"""
+            INSERT INTO cliente (
+                nome, cpf, cep, email            
+            ) VALUES (?, ?, ?, ?)
+            """,
+            # tupla () 
+            (
+                cliente.nome,  
+                cliente.cpf, 
+                cliente.cep,
+                cliente.email, 
+            )
+        )
+        conn.commit()
+
+
     def find_all(self):
         print('Buscando clientes no BD...')
         # 
@@ -32,6 +56,21 @@ class ClienteDao:
         )
         print(res.fetchall())
 
+
 if __name__ == '__main__':
+    # TODO: remover este codigo (apenas para teste)
     dc = ClienteDao()
+    # dc.find_all()
+
+    from entidades import Cliente
+
+    cliente = Cliente(
+        "Karina", 
+        "kkkk@gmail.com",
+        cep="40000-000",
+        cpf="400.000.000-11"
+    )
+    dc.save(cliente)
+
     dc.find_all()
+

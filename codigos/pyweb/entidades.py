@@ -27,22 +27,20 @@ CRUD
 """
 
 class Produto:
-    def __init__(self, id, nome, preco, marca=None):
-        self.id = id        # 635042
+    def __init__(self, nome, preco, marca=None):
+        self.id = None        # 635042
         self.nome = nome    # "Processador AMD Ryzen R5 3600 / Soquete AM4"
         self.preco = preco  # 121.00
         self.marca = marca  # "AMD"
 
 class Cliente:
-    def __init__(self, id, nome, cpf=None, cep=None):
-        # None == null
-        self.id = id
+    def __init__(self, nome, email, cpf=None, cep=None):
+        self.id = None
         self.nome = nome
+        self.email = email
         self.cpf = cpf  # atributo opcional
         self.cep = cep  # atributo opcional
-        # finalizem! 
-        # telefone, senha, data_nasc, email
-    
+            
     # que o cliente diga bom dia:
     def bom_dia(self):
         print(f'Bom dia, meu nome é: {self.nome}')
