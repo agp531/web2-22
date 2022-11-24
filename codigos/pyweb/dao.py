@@ -63,7 +63,7 @@ if __name__ == '__main__':
     # dc.find_all()
 
     from entidades import Cliente
-
+    """
     cliente = Cliente(
         "Karina", 
         "kkkk@gmail.com",
@@ -71,6 +71,7 @@ if __name__ == '__main__':
         cpf="400.000.000-11"
     )
     dc.save(cliente)
-
+    """
+    
     dc.find_all()
 

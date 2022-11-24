@@ -31,6 +31,18 @@ def cotacao():
         valor=valor, preco=preco, total=total
         )
 
+# TODO: implementar listar clientes
+"""
+/listar
+def listar():
+
+    dc = ClienteDao()
+    clientes = dc.findall
+
+    return render template listar_cliente 
+
+"""
+
 @app.route("/cliente", methods=["POST","GET"])
 def cliente():
     # recebe cada input do formulário aqui

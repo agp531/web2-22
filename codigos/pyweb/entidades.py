@@ -47,6 +47,9 @@ class Cliente:
         if self.cpf:
             print(f'Eu tenho um cpf!! {self.cpf}')
 
+
+# TODO: remover este codigo (apenas teste)
+"""
 if __name__ == '__main__':
     maria = Cliente(1, 'Maria') # chama o __init__
     joao = Cliente(2, 'Joao')
@@ -58,7 +61,7 @@ if __name__ == '__main__':
 
     lucia = Cliente(3, 'Lucia', cpf='29292929-11')
     lucia.bom_dia()
-    """
+    
     fabio = Cliente(
         4, 
         "Fabio", 
@@ -67,7 +70,7 @@ if __name__ == '__main__':
         data_nasc = datetime.now(),
         cep='4444'
     )
-    """
+    
     ryzen = Produto(
         635042, 
         "Processador AMD Ryzen R5 3600",
@@ -79,3 +82,4 @@ if __name__ == '__main__':
     dp = ProdutoDao()
     dp.save(ryzen)
     
+"""
