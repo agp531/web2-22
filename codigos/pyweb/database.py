@@ -6,6 +6,7 @@ banco de dados
 import sqlite3
 
 class Database:
+
     @staticmethod
     def create_db():
         """ criar as tabela """
@@ -24,4 +25,6 @@ class Database:
         return conn
 
 if __name__ == '__main__':
-    Database.create_db()
+    # descomentar linha abaixo para gerar o arquivo banco.db
+    # Database.create_db()
+    pass

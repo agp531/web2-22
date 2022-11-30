@@ -1,82 +1,102 @@
-# IMPORTS 
-from flask import Flask, render_template, request, Response
-from datetime import datetime
+from flask import (
+    Flask, render_template, request, redirect, url_for, flash
+)
+from entidades import Cliente, Produto
+from dao import ClienteDao, ProdutoDao
 
-# IMPORTAR a classe Cliente do arquivo entidades.py
-from entidades import Cliente
-
-# criado o servidor web (flask)
 app = Flask(__name__)
-# Flask é a classe
-# app é a instancia (objeto)
+app.config['SECRET_KEY'] = 'wow1001'
 
-# http://localhost:5000/
-@app.route("/") # caminho da pagina principal
+
+@app.route("/")
 def index():
     return render_template('index.html')
 
-# http://localhost:5000/bomdia
-@app.route("/bomdia")  # representa caminho /bomdia
-def bomdia():
-    return render_template("index.html")
 
-# /cotacao
-@app.route("/cotacao")
-def cotacao():
-    valor = 5.21
-    preco = 100
-    total = valor * preco
-    return render_template(
-        "cotacao.html", 
-        valor=valor, preco=preco, total=total
-        )
+@app.route("/reset_db", methods=["GET"])
+def reset_db():
+    from database import Database
+    Database.create_db()
+    flash(f'Banco de dados Resetado', 'success')
+    return redirect(url_for("cliente_index"))
+    
 
-# TODO: implementar listar clientes
-"""
-/listar
-def listar():
+# ==================================
+# ROTAS (CLIENTE)
+# ==================================
 
+@app.route("/cliente/index", methods=["GET"])
+def cliente_index():
     dc = ClienteDao()
-    clientes = dc.findall
+    clientes = dc.find_all()
+    return render_template("cliente_list.html", clientes=clientes)
 
-    return render template listar_cliente 
+@app.route("/cliente/new", methods=["GET"])
+def cliente_new():
+    return render_template("cliente.html", cliente=None)
 
-"""
 
-@app.route("/cliente", methods=["POST","GET"])
-def cliente():
-    # recebe cada input do formulário aqui
-    # cria um cliente usando 
-    # cliente = Cliente()
-    id = int(request.form.get("id"))
+@app.route("/cliente/edit", methods=["GET"])
+def cliente_edit():
+    return "<h1>TODO: implementar</h1>"
+
+# -------
+# CRUD
+# -------
+
+# CREATE
+@app.route("/cliente/create", methods=["POST"])
+def cliente_create():
+    
     nome = request.form.get("nome")
+    cep = request.form.get("cep")
+    email = request.form.get("email")
+    cpf = request.form.get("cpf")
 
-    cliente = Cliente(id, nome)
-    # cliente.cep = cep
+    cliente = Cliente(nome, email, cep=cep, cpf=cpf)
+
+    dao = ClienteDao()
+    dao.save(cliente)
+
+    # retornar feedback para o usuário
+    # flash(f'Cliente "{nome}" cadastrado!', 'success')
+
+    return redirect(url_for("cliente_index"))
 
 
+# READ
+@app.route("/cliente/<id>", methods=["GET"])
+def cliente_id(id):
+    # dc = ClienteDao()
+    # cliente = dc.get_cliente(id)
+    # return cliente.__dict__   
+    return "<h1>TODO: implementar</h1>"
 
-    pass
 
-# http://localhost:5000/conversao
-@app.route("/conversao", methods=["POST","GET"])
-def conversao():
-    #(GET) eh o caso quando usuario digita a url no browser
-    if request.method == 'GET':
-        return render_template("conversao.html")
-    else:
-        #(POST) eh quando envia o formulario (clica calcular)
-        # 4. recebe o valor em dolar preco
-        preco = float(request.form.get("preco"))
-        
-        # 5. calcula o valor
-        # TODO: pegar o preco da cotacao em:
-        # https://docs.awesomeapi.com.br/api-de-moedas
-        valor_reais = preco * 5.24
-        # retorna o valor (Resposta)
-        return render_template(
-            "conversao.html", valor_reais = valor_reais
-            )
+# UPDATE
+@app.route("/cliente/update", methods=["POST"])
+def cliente_update():
+    
+    dao = ClienteDao()
+
+    return "<h1>TODO: implementar</h1>"
+
+
+# DELETE
+@app.route("/cliente/delete/", methods=["GET"])
+def cliente_delete():
+    return "<h1>TODO: implementar</h1>"
+
+# ==================================
+# ROTAS (PRODUTO)
+# ==================================
+
+@app.route("/produto/index", methods=["GET"])
+def produto_index():
+    return "<h1>TODO: implementar</h1>"
+
 
 if __name__ == "__main__":
     app.run(debug=True)
+    # option 2 (terminal):
+    # flask run
