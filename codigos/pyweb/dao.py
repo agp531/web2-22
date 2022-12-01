@@ -52,14 +52,37 @@ class ClienteDao:
         """
         Realiza UPDATE do cliente
         """
-        pass
+        conn = Database.get_connection()
+        conn.execute(
+            f"""
+            UPDATE cliente SET nome = ?, cpf = ?, cep = ?, email = ?
+            WHERE id = ?
+            """,
+            (
+                cliente.nome,
+                cliente.cpf,
+                cliente.cep,
+                cliente.email,
+                cliente.id
+            )
+        )
+        conn.commit()
+        conn.close()
 
     def delete(self, id):
         """
         Remove um cliente de acordo com o id fornecido
         """
-        
-        pass
+        conn = Database.get_connection()
+        conn.execute(
+            # Query
+            # Hard Delete (cuidado!)
+            f"""
+            DELETE FROM cliente WHERE id = {id}
+            """
+        )
+        conn.commit()
+        conn.close()
 
 
     def find_all(self):
@@ -68,9 +91,13 @@ class ClienteDao:
         SELECT id, nome, cpf, cep, email, data_cadastro FROM cliente
         """
         )
+        # executa o SELECT
         results = res.fetchall()
+        # results eh um vetor
 
-        results = [{ 
+        # versao 1
+        results = [
+            { 
                 "id": cliente[0], 
                 "nome": cliente[1],
                 "cpf": cliente[2],

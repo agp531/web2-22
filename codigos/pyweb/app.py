@@ -33,12 +33,18 @@ def cliente_index():
 
 @app.route("/cliente/new", methods=["GET"])
 def cliente_new():
-    return render_template("cliente.html", cliente=None)
+    return render_template("cliente.html", 
+                            action='create', 
+                            cliente=None)
 
-
-@app.route("/cliente/edit", methods=["GET"])
-def cliente_edit():
-    return "<h1>TODO: implementar</h1>"
+@app.route("/cliente/edit/<id>", methods=["GET"])
+def cliente_edit(id):
+    dao = ClienteDao()
+    cliente = dao.get_cliente(id)
+    return render_template("cliente.html", 
+                            cliente=cliente,
+                            action='update'
+                            )
 
 # -------
 # CRUD
@@ -59,7 +65,7 @@ def cliente_create():
     dao.save(cliente)
 
     # retornar feedback para o usuário
-    # flash(f'Cliente "{nome}" cadastrado!', 'success')
+    flash(f'Cliente "{nome}" cadastrado!', 'success')
 
     return redirect(url_for("cliente_index"))
 
@@ -78,14 +84,33 @@ def cliente_id(id):
 def cliente_update():
     
     dao = ClienteDao()
+    # obtem o id que foi setado no form
+    id = request.form.get("id")
 
-    return "<h1>TODO: implementar</h1>"
+    # obtem o cliente que esta no banco
+    cliente = dao.get_cliente(id)
+
+    # atualiza os campos do cliente (todos os campos)
+    cliente.nome = request.form.get("nome")
+    cliente.cep = request.form.get("cep")
+    cliente.email = request.form.get("email")
+    cliente.cpf = request.form.get("cpf")
+
+    dao.update(cliente)
+
+    # retornar feedback para o usuário
+    flash(f'Cliente "{cliente.nome}" Atualizado!', 'success')
+
+    return redirect(url_for("cliente_index"))
 
 
 # DELETE
-@app.route("/cliente/delete/", methods=["GET"])
-def cliente_delete():
-    return "<h1>TODO: implementar</h1>"
+@app.route("/cliente/delete/<id>", methods=["GET"])
+def cliente_delete(id):
+    dao = ClienteDao()
+    dao.delete(id)
+    flash(f'Cliente removido com sucesso!', 'success')
+    return redirect(url_for('cliente_index'))
 
 # ==================================
 # ROTAS (PRODUTO)
