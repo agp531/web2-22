@@ -18,7 +18,7 @@ CREATE TABLE cidades(
     id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
     nome varchar NOT NULL,
     pais_id integer NOT NULL,
-    FOREIGN KEY (pais_id) REFERENCES paises (id),
+    FOREIGN KEY (pais_id) REFERENCES paises (id)
 );
 
 -- testando a associação com alguns inserts --
